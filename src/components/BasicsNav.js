@@ -24,14 +24,9 @@ const BasicsNav = ({
     setImageBasics,
     imageStyle,
   } = useContext(AppContext);
+
   const changedFormat = () => {
     setFormat(formatSelect.current.value);
-  };
-  const handleCheckHorizontal = () => {
-    setIsCheckedHorizontal(!isCheckedHorizontal);
-  };
-  const handleCheckVertical = () => {
-    setIsCheckedVertical(!isCheckedVertical);
   };
 
   function createCanvasImage() {
@@ -192,7 +187,9 @@ const BasicsNav = ({
               id="vertical_flip"
               type="checkbox"
               checked={isCheckedVertical}
-              onChange={handleCheckVertical}
+              onChange={() => {
+                setIsCheckedVertical(!isCheckedVertical);
+              }}
             />
           </div>
           <div className="flex gap-2 items-center">
@@ -201,7 +198,9 @@ const BasicsNav = ({
               id="horizontal_flip"
               type="checkbox"
               checked={isCheckedHorizontal}
-              onChange={handleCheckHorizontal}
+              onChange={() => {
+                setIsCheckedHorizontal(!isCheckedHorizontal);
+              }}
             />
           </div>
         </div>
@@ -217,14 +216,14 @@ const BasicsNav = ({
           <option value="jpg">JPG</option>
         </select>
         {finishedEditing ? (
-          <button className="bg-gradient-to-r from-[#e6251f] to-[#eb5e28] transition-colors rounded-[8px] px-[15px] py-[4px] text-white mb-2 outline-0 border-transparent hover:border-white border">
+          <button className="bg-gradient-to-r from-[#4BB543] to-[#99b543] transition-colors rounded-[8px] px-[15px] py-[4px] text-white mb-2 outline-0 border-transparent hover:border-white border">
             <a href={finalImageURL} download="edited_image">
               Save Image
             </a>
           </button>
         ) : (
           <button
-            className="bg-gradient-to-r from-[#e6251f] to-[#eb5e28] transition-colors rounded-[8px] px-[15px] py-[4px] text-white mb-2 outline-0 border-transparent hover:border-white border"
+            className="bg-gradient-to-r from-[#4BB543] to-[#99b543] transition-colors rounded-[8px] px-[15px] py-[4px] text-white mb-2 outline-0 border-transparent hover:border-white border"
             onClick={() => {
               setFinishedEditing(true);
               createCanvasImage();
